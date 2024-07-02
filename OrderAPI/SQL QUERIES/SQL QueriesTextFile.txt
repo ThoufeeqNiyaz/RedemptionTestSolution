@@ -1,0 +1,144 @@
+﻿
+USE [RedemptiontestU,O,P];
+SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Users';
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL
+);
+
+INSERT INTO Users (Name, Email)
+VALUES 
+('John Doe', 'john.doe@example.com'),
+('Jane Smith', 'jane.smith@example.com'),
+('Alice Johnson', 'alice.johnson@example.com'),
+('Bob Brown', 'bob.brown@example.com'),
+('Charlie Davis', 'charlie.davis@example.com');
+
+select * from orders;
+
+CREATE TABLE Orders (
+    Id INT PRIMARY KEY IDENTITY,
+    UserId INT NOT NULL,
+    ProductId INT NOT NULL,
+    OrderDate DATETIME NOT NULL
+);
+
+INSERT INTO Orders (UserId, ProductId, OrderDate)
+VALUES 
+(1, 101, '2023-01-01'),
+(2, 102, '2023-02-01'),
+(1, 103, '2023-03-01'),
+(3, 101, '2023-04-01'),
+(2, 104, '2023-05-01');
+
+
+
+
+
+
+
+
+
+USE [RedemptiontestUOP];
+GO
+
+-- Create the Products table
+CREATE TABLE Products (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(18, 2) NOT NULL
+);
+GO
+
+
+INSERT INTO Products (Name, Price)
+VALUES 
+('Product A', 19.99),
+('Product B', 29.99),
+('Product C', 39.99),
+('Product D', 49.99),
+('Product E', 59.99);
+
+
+SELECT * FROM Products;
+
+
+
+
+
+
+
+
+
+
+
+
+-- Create User Database
+CREATE DATABASE UserDatabase;
+GO
+
+USE UserDatabase;
+GO
+
+-- Create Users Table
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL
+);
+GO
+
+-- Insert Dummy Data
+INSERT INTO Users (Name, Email) VALUES ('John Doe', 'john@example.com'), ('Jane Doe', 'jane@example.com');
+
+
+
+
+
+
+-- Create Product Database
+CREATE DATABASE ProductDatabase;
+GO
+
+USE ProductDatabase;
+GO
+
+-- Create Products Table
+CREATE TABLE Products (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(18, 2) NOT NULL
+);
+GO
+
+-- Insert Dummy Data
+INSERT INTO Products (Name, Price) VALUES ('Product1', 10.00), ('Product2', 20.00);
+
+
+
+
+
+-- Create Order Database
+CREATE DATABASE OrderDatabase;
+GO
+
+USE OrderDatabase;
+GO
+
+-- Create Orders Table without Foreign Key Constraints
+CREATE TABLE Orders (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UserId INT NOT NULL,
+    ProductId INT NOT NULL,
+    OrderDate DATETIME NOT NULL
+);
+
+
+
+
+
+-- Insert Dummy Data
+INSERT INTO Users (Name, Email) VALUES ('John Doe', 'john@example.com'), ('Jane Doe', 'jane@example.com');
+INSERT INTO Products (Name, Price) VALUES ('Product1', 10.00), ('Product2', 20.00);
+INSERT INTO Orders (UserId, ProductId, OrderDate) VALUES (1, 1, GETDATE()), (2, 2, GETDATE());
